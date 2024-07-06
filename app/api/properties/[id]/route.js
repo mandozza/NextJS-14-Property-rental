@@ -3,6 +3,7 @@ import Property from '@/models/Property';
 
 // Get /api/properties/:id
 export const GET = async (request, { params }) => {
+	console.log(`api hit - ${params.id}`);
 	try {
 		await connectDB();
 

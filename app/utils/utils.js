@@ -33,8 +33,10 @@ export async function fetchProperty(id) {
 		if (!apiDomain) {
 			return null;
 		}
-
-		const res = await fetch(`${apiDomain}/properties/${id}`);
+		//Caching for 1hr.
+		const res = await fetch(`${apiDomain}/properties/${id}`, {
+			next: { revalidate: 3600 },
+		});
 		if (!res.ok) {
 			throw new Error('Failed to fetch data');
 		}
